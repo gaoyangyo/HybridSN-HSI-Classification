@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# 数据：体积大，不传仓库，README 里给出获取方式
+data/*.mat
+data/*.npy
+data/*.h5
+
+# 模型权重：体积大，可只保留最优一次
+results/**/*.pth
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# matplotlib 缓存（由 utils.py 自动生成）
+.mplconfig/
+

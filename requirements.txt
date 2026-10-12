@@ -1,0 +1,14 @@
+# HybridSN / Pavia University 复现依赖
+# 以下版本为本机实测可用的组合（Windows + Python 3.14.3 + CPU）
+# CPU 版 torch 即可跑通全部实验；有 NVIDIA 显卡时换成 CUDA 版会快很多：
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+
+torch==2.14.0
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+PyYAML==6.0.3
+
+# 国内下载慢时加镜像：
+#   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple

@@ -1,0 +1,28 @@
+# HybridSN / Pavia University 论文配置
+# 对应论文：Roy et al., IEEE GRSL 17(2): 277-281, 2020
+#
+# 做消融实验时**不要改这个文件**，用命令行参数覆盖即可，例如：
+#   python src/train.py --train-ratio 0.05 --tag ratio05
+# 这样每次实验的完整配置都会存进 results/<tag>/config.json，保证可追溯。
+
+data_dir: data          # PaviaU.mat / PaviaU_gt.mat 所在目录
+tag: paper_30pct        # 本次实验的输出子目录名
+seed: 42                # 固定随机种子：三个随机源都会用它
+
+# ---- 数据与预处理 ----
+train_ratio: 0.3        # 论文：30% 训练 / 70% 测试（★ 按类别分层抽样，非全图随机）
+pca_components: 15      # 论文对 UP 用 15（Indian Pines 用 30）
+patch_size: 25          # 论文表 IV：19/21/23/25 里 25×25 最优
+normalize: global       # global=全图最大值归一化（论文做法）；train=只用训练像元（更严谨）
+pca_fit: all            # all=PCA 在全图拟合（论文做法，含轻微泄漏）；train=只用训练像元
+
+# ---- 模型 ----
+variant: full           # full=论文结构；two3d=少一个 3-D 卷积；no2d=去掉 2-D 卷积
+dropout: 0.4            # 论文未给比例，沿用官方 Keras 代码的 0.4
+
+# ---- 训练 ----
+batch_size: 256         # 论文：256
+epochs: 100             # 论文：100
+lr: 0.001               # 论文：0.001（Adam）
+num_workers: 0          # Windows 上建议 0，避免多进程反复读取
+log_every: 10           # 每多少 epoch 打印一次
