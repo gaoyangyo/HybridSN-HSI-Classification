@@ -25,6 +25,14 @@ from torch.utils.data import DataLoader, Dataset
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+# 项目根目录：所有相对路径相对它解析，与当前工作目录无关（详见 train.py 同一处注释）
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def project_path(p: str) -> str:
+    return p if os.path.isabs(p) else os.path.join(PROJECT_ROOT, p)
+
+
 from data import (PAVIA_CLASSES, PatchDataset, apply_pca, build_all_coords,
                   load_pavia, normalize, pad_cube, stratified_split)
 from metrics import compute_all, format_report
@@ -56,7 +64,7 @@ def parse_args():
 
 def main() -> int:
     args = parse_args()
-    exp = args.exp
+    exp = project_path(args.exp)
     with open(os.path.join(exp, 'config.json'), 'r', encoding='utf-8') as f:
         cfg = json.load(f)
     with open(os.path.join(exp, 'metrics.json'), 'r', encoding='utf-8') as f:
@@ -67,7 +75,7 @@ def main() -> int:
     print(f'设备: {device} ({dev_name})   实验: {exp}')
 
     # ---------- 用与训练完全相同的流程重建数据（保证一致性） ----------
-    data_dir = args.data_dir or cfg['data_dir']
+    data_dir = project_path(args.data_dir or cfg['data_dir'])
     cube_raw, gt = load_pavia(os.path.join(data_dir, 'PaviaU.mat'),
                               os.path.join(data_dir, 'PaviaU_gt.mat'))
 

@@ -13,6 +13,15 @@ data/*.h5
 # 模型权重：体积大，可只保留最优一次
 results/**/*.pth
 
+# 每个实验的中间产物：可用固定种子（seed=42）重新生成，
+# 仓库只保留任务书要求的曲线图、混淆矩阵、逐类精度与指标文件。
+results/*/config.json
+results/*/split.npz
+results/*/report.txt
+results/*/confusion_matrix.csv
+results/*/maps/*.npy
+results/*/maps/metrics_recomputed.json
+
 # 编辑器 / 系统
 .vscode/
 .idea/
@@ -21,4 +30,14 @@ Thumbs.db
 
 # matplotlib 缓存（由 utils.py 自动生成）
 .mplconfig/
+
+# 本地使用的交付物：任务书只要求上传「实验报告 PDF」，
+# 以下文件保留在本地供组会汇报与答辩使用，不进入公开仓库。
+docs/HybridSN复现_组会汇报.pdf
+docs/HybridSN复现_组会汇报.pptx
+docs/HybridSN复现实验报告.docx
+docs/任务书问题解答.docx
+docs/任务书问题解答.pdf
+docs/组会汇报口播卡.docx
+docs/组会汇报口播卡.pdf
 

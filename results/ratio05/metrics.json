@@ -1,0 +1,118 @@
+{
+  "OA": 0.9967028370364902,
+  "AA": 0.994000936334603,
+  "Kappa": 0.9956312084851386,
+  "n_test": 40641,
+  "per_class": [
+    {
+      "class": 1,
+      "name": "Asphalt",
+      "support": 6300,
+      "accuracy": 0.996984126984127,
+      "precision": 0.9990456497534596,
+      "recall": 0.996984126984127,
+      "f1": 0.9980138237864463
+    },
+    {
+      "class": 2,
+      "name": "Meadows",
+      "support": 17717,
+      "accuracy": 1.0,
+      "precision": 0.9998306997742664,
+      "recall": 1.0,
+      "f1": 0.999915342720885
+    },
+    {
+      "class": 3,
+      "name": "Gravel",
+      "support": 1995,
+      "accuracy": 0.9724310776942355,
+      "precision": 0.9989701338825953,
+      "recall": 0.9724310776942355,
+      "f1": 0.985521971043942
+    },
+    {
+      "class": 4,
+      "name": "Trees",
+      "support": 2911,
+      "accuracy": 0.9883201648917898,
+      "precision": 0.993439226519337,
+      "recall": 0.9883201648917898,
+      "f1": 0.9908730842087136
+    },
+    {
+      "class": 5,
+      "name": "Painted metal sheets",
+      "support": 1278,
+      "accuracy": 0.9984350547730829,
+      "precision": 0.996875,
+      "recall": 0.9984350547730829,
+      "f1": 0.9976544175136826
+    },
+    {
+      "class": 6,
+      "name": "Bare Soil",
+      "support": 4778,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 7,
+      "name": "Bitumen",
+      "support": 1264,
+      "accuracy": 1.0,
+      "precision": 0.9685823754789272,
+      "recall": 1.0,
+      "f1": 0.984040482678085
+    },
+    {
+      "class": 8,
+      "name": "Self-Blocking Bricks",
+      "support": 3498,
+      "accuracy": 0.9942824471126358,
+      "precision": 0.9838755304101838,
+      "recall": 0.9942824471126358,
+      "f1": 0.9890516138205603
+    },
+    {
+      "class": 9,
+      "name": "Shadows",
+      "support": 900,
+      "accuracy": 0.9955555555555555,
+      "precision": 0.9977728285077951,
+      "recall": 0.9955555555555555,
+      "f1": 0.996662958843159
+    }
+  ],
+  "train_ratio": 0.05,
+  "pca_components": 15,
+  "patch_size": 25,
+  "variant": "full",
+  "params": 4844793,
+  "train_minutes": 8.21,
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "torch": "2.14.0+cu126",
+    "cuda_available": true,
+    "cuda_version": "12.6",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "gpu_memory_gb": 4.0,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.11.2"
+  },
+  "normalize": {
+    "denom": 8000.0,
+    "mode": "global"
+  },
+  "pca": {
+    "info": "PCA 在全图像元上拟合（与论文一致，但含轻微信息泄漏）",
+    "explained_variance_ratio_sum": 0.998952329158783,
+    "n_components": 15
+  }
+}

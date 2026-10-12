@@ -16,6 +16,13 @@ import glob
 import json
 import os
 
+# 项目根目录：所有相对路径相对它解析，与当前工作目录无关（详见 train.py 同一处注释）
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def project_path(p: str) -> str:
+    return p if os.path.isabs(p) else os.path.join(PROJECT_ROOT, p)
+
 
 def collect(results_dir: str) -> list[dict]:
     rows = []
@@ -59,17 +66,19 @@ def main() -> int:
     ap.add_argument('--out', default='results')
     args = ap.parse_args()
 
-    rows = collect(args.out)
+    out_dir = project_path(args.out)
+
+    rows = collect(out_dir)
     if not rows:
-        print(f'{args.out}/ 下还没有任何实验结果，先跑： python src/train.py')
+        print(f'{out_dir}/ 下还没有任何实验结果，先跑： python src/train.py')
         return 1
 
     rows.sort(key=lambda r: (r['variant'], r['train_ratio'] if r['train_ratio'] is not None else 0))
 
-    os.makedirs(args.out, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
 
     # ---- CSV ----
-    csv_path = os.path.join(args.out, 'compare.csv')
+    csv_path = os.path.join(out_dir, 'compare.csv')
     with open(csv_path, 'w', newline='', encoding='utf-8-sig') as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader()
@@ -92,7 +101,7 @@ def main() -> int:
             )
         )
 
-    md_path = os.path.join(args.out, 'compare.md')
+    md_path = os.path.join(out_dir, 'compare.md')
     with open(md_path, 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
 

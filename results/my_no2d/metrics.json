@@ -1,0 +1,118 @@
+{
+  "OA": 0.9999332153471132,
+  "AA": 0.9998963998963999,
+  "Kappa": 0.9999115068379355,
+  "n_test": 29947,
+  "per_class": [
+    {
+      "class": 1,
+      "name": "Asphalt",
+      "support": 4642,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 2,
+      "name": "Meadows",
+      "support": 13055,
+      "accuracy": 1.0,
+      "precision": 0.999846825457609,
+      "recall": 1.0,
+      "f1": 0.9999234068627451
+    },
+    {
+      "class": 3,
+      "name": "Gravel",
+      "support": 1470,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 4,
+      "name": "Trees",
+      "support": 2145,
+      "accuracy": 0.9990675990675991,
+      "precision": 1.0,
+      "recall": 0.9990675990675991,
+      "f1": 0.9995335820895522
+    },
+    {
+      "class": 5,
+      "name": "Painted metal sheets",
+      "support": 942,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 6,
+      "name": "Bare Soil",
+      "support": 3521,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 7,
+      "name": "Bitumen",
+      "support": 931,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 8,
+      "name": "Self-Blocking Bricks",
+      "support": 2578,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "class": 9,
+      "name": "Shadows",
+      "support": 663,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  ],
+  "train_ratio": 0.3,
+  "pca_components": 15,
+  "patch_size": 25,
+  "variant": "no2d",
+  "params": 8926393,
+  "train_minutes": 12.93,
+  "env": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "torch": "2.14.0+cu126",
+    "cuda_available": true,
+    "cuda_version": "12.6",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "gpu_memory_gb": 4.0,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.11.2"
+  },
+  "normalize": {
+    "denom": 8000.0,
+    "mode": "global"
+  },
+  "pca": {
+    "info": "PCA 在全图像元上拟合（与论文一致，但含轻微信息泄漏）",
+    "explained_variance_ratio_sum": 0.998952329158783,
+    "n_components": 15
+  }
+}

@@ -37,6 +37,18 @@ from torch.utils.data import DataLoader, Dataset
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+# 项目根目录（本文件位于 <root>/src/ 下）。
+# 所有相对路径一律相对【项目根目录】解析，而不是相对当前工作目录，
+# 这样无论从 Anaconda Prompt、PyCharm 还是任何 IDE 启动，
+# 都能正确找到 configs/ data/ results/，无需手动设置 Working directory。
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def project_path(p: str) -> str:
+    """相对路径 → 相对项目根目录的绝对路径；绝对路径原样返回。"""
+    return p if os.path.isabs(p) else os.path.join(PROJECT_ROOT, p)
+
+
 from data import (PAVIA_CLASSES, PatchDataset, apply_pca, dataset_summary,
                   load_pavia, normalize, pad_cube, stratified_split)
 from metrics import compute_all, format_report
@@ -61,7 +73,7 @@ class TorchPatchDS(Dataset):
 
 def load_config(path: str) -> dict:
     import yaml
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(project_path(path), 'r', encoding='utf-8') as f:
         return yaml.safe_load(f)
 
 
@@ -95,7 +107,7 @@ def main() -> int:
     cfg.update(overrides)
 
     tag = args.tag or cfg.get('tag') or f"ratio{int(cfg['train_ratio'] * 100):02d}"
-    out_dir = os.path.join(args.out_dir, tag)
+    out_dir = os.path.join(project_path(args.out_dir), tag)
     ensure_dirs(out_dir)
 
     print('=' * 72)
@@ -113,7 +125,7 @@ def main() -> int:
     print('环境 :', {k: v for k, v in env.items() if v is not None})
 
     # ---------------- 1. 数据 ----------------
-    data_dir = args.data_dir or cfg['data_dir']
+    data_dir = project_path(args.data_dir or cfg['data_dir'])
     mat = os.path.join(data_dir, 'PaviaU.mat')
     gt_mat = os.path.join(data_dir, 'PaviaU_gt.mat')
     if not os.path.exists(mat):
